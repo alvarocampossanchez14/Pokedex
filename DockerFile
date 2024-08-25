@@ -1,0 +1,27 @@
+# Usa una imagen base con nodejs y curl (necesario para instalar Bun)
+FROM node:18-bullseye-slim
+
+# Instala Bun
+RUN curl -fsSL https://bun.sh/install | bash
+
+# Asegúrate de que Bun esté en el PATH
+ENV BUN_INSTALL="/root/.bun"
+ENV PATH="$BUN_INSTALL/bin:$PATH"
+
+# Crea un directorio de trabajo
+WORKDIR /app
+
+# Copia el archivo de lock de bun y el package.json
+COPY bun.lockb package.json /app/
+
+# Instala las dependencias
+RUN bun install
+
+# Copia el resto de los archivos de la aplicación
+COPY . .
+
+# Expone el puerto de la aplicación (si tu app escucha en un puerto específico)
+EXPOSE 3000
+
+# Comando para correr la aplicación
+CMD ["bun", "run", "start"]
