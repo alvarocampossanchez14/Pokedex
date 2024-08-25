@@ -1,6 +1,7 @@
 <template>
   <div class="w-screen flex flex-col items-center gap-10 justify-center p-10">
-    <h1>Alvaro</h1>
+    <h1>Alvaro Test</h1>
+
     <img src="../assets/pokemon-23.svg" class="w-52 -scroll-my-20 transition-transform duration-500">
     
     <div class="w-full">
