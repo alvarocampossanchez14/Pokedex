@@ -49,5 +49,5 @@ jobs:
           docker pull alvarocamposdev/pokedex:latest
           docker stop pokedex || true
           docker rm pokedex || true
-          docker run -d --name pokedex -p 80:80 alvarocamposdev/pokedex:latest
+          docker run -d --name pokedex -p 8080:80 alvarocamposdev/pokedex:latest
         EOF
