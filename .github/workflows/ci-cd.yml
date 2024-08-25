@@ -40,11 +40,9 @@ jobs:
 
     - name: Deploy application
       run: |
-        echo "${{ secrets.SSH_PRIVATE_KEY }}" > private_key
-        chmod 600 private_key
-        ssh -o StrictHostKeyChecking=no -i private_key root@185.245.183.183 << 'EOF'
-          docker pull alvarocamposdev/pokedex:latest
-          docker stop pokedex || true
-          docker rm pokedex || true
-          docker run -d --name pokedex -p 80:80 alvarocamposdev/pokedex:latest
-        EOF
+        ssh -o StrictHostKeyChecking=no -i ${{ secrets.SSH_PRIVATE_KEY }} root@185.245.183.183 << 'EOF'
+      docker pull alvarocamposdev/pokedex:latest
+      docker stop pokedex || true
+      docker rm pokedex || true
+      docker run -d --name pokedex -p 80:80 alvarocamposdev/pokedex:latest
+    EOF
