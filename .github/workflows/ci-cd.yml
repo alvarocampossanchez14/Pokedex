@@ -3,7 +3,7 @@ name: Build and Deploy
 on:
   push:
     branches:
-      - main  # Cambia esto al nombre de la rama que usas para desplegar
+      - main  
 
 jobs:
   build:
