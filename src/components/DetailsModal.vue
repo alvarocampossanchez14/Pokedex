@@ -1,6 +1,6 @@
 <template>
   <div v-if="showModal" 
-       class="fixed inset-0 flex justify-center items-center bg-black/60 text-white z-50">
+       class="select-none	fixed inset-0 flex justify-center items-center bg-black/60 text-white z-50">
        
     <div class="relative bg-gradient-to-b from-gray-800 via-gray-900 to-black shadow-xl rounded-lg p-4 sm:p-8 max-w-xs sm:max-w-sm md:max-w-md w-full mx-4"
          @mousemove="handleMouseMove"
@@ -11,11 +11,9 @@
            style="background-image: url('https://static.thenounproject.com/png/40583-200.png');">
       </div>
 
-      <!-- Botón de cierre -->
-      <div @click="closeModal" class="absolute top-4 right-4 cursor-pointer bg-red-600 p-2 rounded-full hover:bg-red-500 transition duration-300">
-        <FontAwesomeIcon :icon="faXmark" class="text-lg text-white" />
-      </div>
-
+    <!-- Botón de cierre -->
+    <CloseButton @close="closeModal" />
+    
       <!-- Contenedor de la imagen con botones de navegación -->
       <div class="relative flex justify-center items-center mb-4 z-20">
         <!-- Botón anterior -->
@@ -63,6 +61,7 @@ import { faXmark, faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-
 
 import StatsProgressBar from '../components/StatsProgressBar.vue';
 import PokemonType from '../components/PokemonType.vue';
+import CloseButton from './CloseButton.vue'
 
 const props = defineProps({
   showModal: Boolean,
@@ -75,7 +74,6 @@ const currentImageIndex = ref(0);
 const pokemonImages = ref([]);
 const cardStyle = ref({});
 
-// Manejo de la animación del mouse sobre la tarjeta interior
 const handleMouseMove = (event) => {
   const { clientX, clientY } = event;
   const centerX = window.innerWidth / 2;
