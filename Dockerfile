@@ -16,7 +16,7 @@ RUN npm run build
 FROM nginx:alpine
 COPY --from=0 /app/dist /usr/share/nginx/html
 
-# Expone el puerto 80
+# Expone el puerto 
 EXPOSE 8080
 
 # Comando para iniciar Nginx
